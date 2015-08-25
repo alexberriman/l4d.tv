@@ -60,3 +60,7 @@
 - name: l4d.tv | Create frontend symlink
   sudo: yes
   file: src={{ nginx.vhostpath }}/frontend dest={{ nginx.vhostenabledpath }}/frontend state=link
+
+- name: l4d.tv | Restart nginx
+  sudo: yes
+  service: name=nginx state=restarted
