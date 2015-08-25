@@ -11,6 +11,8 @@ nginx:
     install: '1'
     docroot: /vagrant
     servername: l4d.tv.vagrant
+    vhostpath: /etc/nginx/sites-available
+    vhostenabledpath: /etc/nginx/sites-enabled
 mysql:
     install: '1'
     root_password: '123'
@@ -25,7 +27,12 @@ php:
 composer:
     install: '1'
 app:
-    www: /vagrant/app/
+    www: /vagrant/app
+    backend: backend/
+    frontend: frontend/
+    hostname:
+        frontend: www.l4d.tv.vagrant
+        backend: admin.l4d.tv.vagrant
     db:
         test:
             database: db_test

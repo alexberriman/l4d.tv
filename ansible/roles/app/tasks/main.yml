@@ -44,3 +44,19 @@
     - composer global require "codeception/codeception=2.0.*"
     - composer global require "codeception/specify=*"
     - composer global require "codeception/verify=*"
+
+- name: l4d.tv | Create backend vhost
+  sudo: yes
+  template: src="vhost_backend.tpl" dest={{ nginx.vhostpath }}/backend
+
+- name: l4d.tv | Create backend symlink
+  sudo: yes
+  file: src={{ nginx.vhostpath }}/backend dest={{ nginx.vhostenabledpath }}/backend state=link
+
+- name: l4d.tv | Create frontend vhost
+  sudo: yes
+  template: src="vhost_frontend.tpl" dest={{ nginx.vhostpath }}/frontend
+
+- name: l4d.tv | Create frontend symlink
+  sudo: yes
+  file: src={{ nginx.vhostpath }}/frontend dest={{ nginx.vhostenabledpath }}/frontend state=link
