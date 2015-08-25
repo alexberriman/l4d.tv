@@ -1,2 +1,46 @@
 ---
-# application tasks to be customized and to run after the main provision
+
+- name: l4d.tv | Root make sure the known hosts file exists
+  file: "path=~/.ssh/known_hosts state=touch"
+
+- name: l4d.tv | Ensure github.com is a known host
+  lineinfile:
+    dest: ~/.ssh/known_hosts
+    create: yes
+    state: present
+    line: "{{ lookup('pipe', 'ssh-keyscan -t rsa github.com') }}"
+    regexp: "^github\\.com"
+
+- name: l4d.tv | Require asset manager
+  shell: chdir={{ app.www }} composer global require "fxp/composer-asset-plugin:1.0.0"
+
+- name: l4d.tv | Install project
+  composer: command=install working_dir={{ app.www }} no_dev=no
+
+- name: l4d.tv | Set permissions on init file
+  file: path={{ app.www }}/init mode=0744
+
+- name: l4d.tv | Init project
+  shell: yes | php {{ app.www }}/init --env=Development
+
+- name: l4d.tv | Copy config file to temp
+  sudo: yes
+  template: src="config.tpl" dest="/tmp/main-local.php" owner="vagrant" group="vagrant"
+
+- name: l4d.tv | Move config file
+  sudo: yes
+  command: mv "/tmp/main-local.php" "{{ app.www }}/common/config/main-local.php"
+
+- name: l4d.tv | Run yii migrate
+  shell: php {{ app.www }}/yii migrate --interactive=0
+
+- name: l4d.tv | Create tmp directory
+  file: path={{ app.www }}/tmp state=directory owner=vagrant group=vagrant mode=0777
+
+- name: l4d.tv | Install codeception
+  command: chdir={{ app.www }} {{ item }}
+  with_items:
+    - composer global status
+    - composer global require "codeception/codeception=2.0.*"
+    - composer global require "codeception/specify=*"
+    - composer global require "codeception/verify=*"

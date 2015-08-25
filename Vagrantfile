@@ -25,10 +25,10 @@ end
 Vagrant.configure("2") do |config|
 
     config.vm.provider :virtualbox do |v|
-        v.name = "default"
+        v.name = "l4d.tv"
         v.customize [
             "modifyvm", :id,
-            "--name", "default",
+            "--name", "l4d.tv",
             "--memory", 512,
             "--natdnshostresolver1", "on",
             "--cpus", 1,
@@ -52,5 +52,5 @@ Vagrant.configure("2") do |config|
         config.vm.provision :shell, path: "ansible/windows.sh", args: ["default"]
     end
 
-    config.vm.synced_folder "./app/", "/vagrant", type: "nfs"
+    config.vm.synced_folder "./", "/vagrant", type: "nfs"
 end

@@ -22,4 +22,16 @@ php:
     install: '1'
     ppa: php5-5.6
     packages: [php5-cli, php5-intl, php5-mcrypt, php5-curl, php5-fpm, php5-gd, php5-xdebug, php5-mysql]
-
+composer:
+    install: '1'
+app:
+    www: /vagrant/app/
+    db:
+        test:
+            database: db_test
+            user: db
+            password: password
+        main:
+          database: "{{ mysql.database }}"
+          user: "{{ mysql.user }}"
+          password: "{{ mysql.password }}"

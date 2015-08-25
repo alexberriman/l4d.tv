@@ -9,4 +9,5 @@
     - nginx
     - mysql
     - php
+    - composer
     - app
