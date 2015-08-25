@@ -28,8 +28,8 @@ composer:
     install: '1'
 app:
     www: /vagrant/app
-    backend: backend/
-    frontend: frontend/
+    backend: backend/web
+    frontend: frontend/web
     hostname:
         frontend: www.l4d.tv.vagrant
         backend: admin.l4d.tv.vagrant
