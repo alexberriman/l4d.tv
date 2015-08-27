@@ -3,6 +3,9 @@
 use yii\db\Migration;
 use yii\db\mysql\Schema;
 
+/**
+ * Class m150827_062233_initial_schema
+ */
 class m150827_062233_initial_schema extends Migration
 {
     public function up()
