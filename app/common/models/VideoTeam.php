@@ -32,8 +32,20 @@ class VideoTeam extends \yii\db\ActiveRecord
         return [
             [['video_id', 'team_id'], 'required'],
             [['video_id', 'team_id', 'win'], 'integer'],
-            [['team_id'], 'exist', 'skipOnError' => true, 'targetClass' => Team::className(), 'targetAttribute' => ['team_id' => 'id']],
-            [['video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['video_id' => 'id']],
+            [
+                ['team_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Team::className(),
+                'targetAttribute' => ['team_id' => 'id']
+            ],
+            [
+                ['video_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Video::className(),
+                'targetAttribute' => ['video_id' => 'id']
+            ],
         ];
     }
 

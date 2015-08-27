@@ -39,7 +39,13 @@ class Team extends \yii\db\ActiveRecord
             [['name', 'added_by_id'], 'required'],
             [['added_by_id'], 'integer'],
             [['name', 'logo'], 'string', 'max' => 255],
-            [['added_by_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['added_by_id' => 'id']],
+            [
+                ['added_by_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['added_by_id' => 'id']
+            ],
         ];
     }
 
@@ -77,7 +83,8 @@ class Team extends \yii\db\ActiveRecord
      */
     public function getPlayers()
     {
-        return $this->hasMany(Player::className(), ['id' => 'player_id'])->viaTable('{{%team_player}}', ['team_id' => 'id']);
+        return $this->hasMany(Player::className(), ['id' => 'player_id'])
+            ->viaTable('{{%team_player}}', ['team_id' => 'id']);
     }
 
     /**
@@ -109,6 +116,7 @@ class Team extends \yii\db\ActiveRecord
      */
     public function getVideos()
     {
-        return $this->hasMany(Video::className(), ['id' => 'video_id'])->viaTable('{{%video_team}}', ['team_id' => 'id']);
+        return $this->hasMany(Video::className(), ['id' => 'video_id'])
+            ->viaTable('{{%video_team}}', ['team_id' => 'id']);
     }
 }

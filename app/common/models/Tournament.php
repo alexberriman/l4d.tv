@@ -39,9 +39,27 @@ class Tournament extends \yii\db\ActiveRecord
             [['winning_team_id', 'runner_up_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['country_id'], 'string', 'max' => 2],
-            [['runner_up_id'], 'exist', 'skipOnError' => true, 'targetClass' => Team::className(), 'targetAttribute' => ['runner_up_id' => 'id']],
-            [['country_id'], 'exist', 'skipOnError' => true, 'targetClass' => Country::className(), 'targetAttribute' => ['country_id' => 'id']],
-            [['winning_team_id'], 'exist', 'skipOnError' => true, 'targetClass' => Team::className(), 'targetAttribute' => ['winning_team_id' => 'id']],
+            [
+                ['runner_up_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Team::className(),
+                'targetAttribute' => ['runner_up_id' => 'id']
+            ],
+            [
+                ['country_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Country::className(),
+                'targetAttribute' => ['country_id' => 'id']
+            ],
+            [
+                ['winning_team_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Team::className(),
+                'targetAttribute' => ['winning_team_id' => 'id']
+            ],
         ];
     }
 

@@ -32,8 +32,20 @@ class VideoPlayer extends \yii\db\ActiveRecord
             [['video_id', 'player_id'], 'required'],
             [['video_id'], 'integer'],
             [['player_id'], 'string', 'max' => 20],
-            [['player_id'], 'exist', 'skipOnError' => true, 'targetClass' => Player::className(), 'targetAttribute' => ['player_id' => 'id']],
-            [['video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['video_id' => 'id']],
+            [
+                ['player_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Player::className(),
+                'targetAttribute' => ['player_id' => 'id']
+            ],
+            [
+                ['video_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Video::className(),
+                'targetAttribute' => ['video_id' => 'id']
+            ],
         ];
     }
 

@@ -58,6 +58,7 @@ class Caster extends \yii\db\ActiveRecord
      */
     public function getVideos()
     {
-        return $this->hasMany(Video::className(), ['id' => 'video_id'])->viaTable('{{%video_caster}}', ['caster_id' => 'id']);
+        return $this->hasMany(Video::className(), ['id' => 'video_id'])
+            ->viaTable('{{%video_caster}}', ['caster_id' => 'id']);
     }
 }

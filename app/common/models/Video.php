@@ -49,8 +49,20 @@ class Video extends \yii\db\ActiveRecord
             [['description'], 'string'],
             [['date_added', 'date_created'], 'safe'],
             [['title', 'key', 'thumbnail'], 'string', 'max' => 255],
-            [['added_by_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['added_by_id' => 'id']],
-            [['video_source_id'], 'exist', 'skipOnError' => true, 'targetClass' => VideoSource::className(), 'targetAttribute' => ['video_source_id' => 'id']],
+            [
+                ['added_by_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['added_by_id' => 'id']
+            ],
+            [
+                ['video_source_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => VideoSource::className(),
+                'targetAttribute' => ['video_source_id' => 'id']
+            ],
         ];
     }
 
@@ -101,7 +113,8 @@ class Video extends \yii\db\ActiveRecord
      */
     public function getCampaigns()
     {
-        return $this->hasMany(Campaign::className(), ['id' => 'campaign_id'])->viaTable('{{%video_campaign}}', ['video_id' => 'id']);
+        return $this->hasMany(Campaign::className(), ['id' => 'campaign_id'])
+            ->viaTable('{{%video_campaign}}', ['video_id' => 'id']);
     }
 
     /**
@@ -117,7 +130,8 @@ class Video extends \yii\db\ActiveRecord
      */
     public function getCasters()
     {
-        return $this->hasMany(Caster::className(), ['id' => 'caster_id'])->viaTable('{{%video_caster}}', ['video_id' => 'id']);
+        return $this->hasMany(Caster::className(), ['id' => 'caster_id'])
+            ->viaTable('{{%video_caster}}', ['video_id' => 'id']);
     }
 
     /**
@@ -133,7 +147,8 @@ class Video extends \yii\db\ActiveRecord
      */
     public function getPlayers()
     {
-        return $this->hasMany(Player::className(), ['id' => 'player_id'])->viaTable('{{%video_player}}', ['video_id' => 'id']);
+        return $this->hasMany(Player::className(), ['id' => 'player_id'])
+            ->viaTable('{{%video_player}}', ['video_id' => 'id']);
     }
 
     /**
@@ -149,6 +164,7 @@ class Video extends \yii\db\ActiveRecord
      */
     public function getTeams()
     {
-        return $this->hasMany(Team::className(), ['id' => 'team_id'])->viaTable('{{%video_team}}', ['video_id' => 'id']);
+        return $this->hasMany(Team::className(), ['id' => 'team_id'])
+            ->viaTable('{{%video_team}}', ['video_id' => 'id']);
     }
 }

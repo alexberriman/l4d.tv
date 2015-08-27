@@ -31,8 +31,20 @@ class VideoCampaign extends \yii\db\ActiveRecord
         return [
             [['video_id', 'campaign_id'], 'required'],
             [['video_id', 'campaign_id'], 'integer'],
-            [['campaign_id'], 'exist', 'skipOnError' => true, 'targetClass' => Campaign::className(), 'targetAttribute' => ['campaign_id' => 'id']],
-            [['video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['video_id' => 'id']],
+            [
+                ['campaign_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Campaign::className(),
+                'targetAttribute' => ['campaign_id' => 'id']
+            ],
+            [
+                ['video_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Video::className(),
+                'targetAttribute' => ['video_id' => 'id']
+            ],
         ];
     }
 

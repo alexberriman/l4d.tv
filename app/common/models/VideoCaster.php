@@ -31,8 +31,20 @@ class VideoCaster extends \yii\db\ActiveRecord
         return [
             [['video_id', 'caster_id'], 'required'],
             [['video_id', 'caster_id'], 'integer'],
-            [['caster_id'], 'exist', 'skipOnError' => true, 'targetClass' => Caster::className(), 'targetAttribute' => ['caster_id' => 'id']],
-            [['video_id'], 'exist', 'skipOnError' => true, 'targetClass' => Video::className(), 'targetAttribute' => ['video_id' => 'id']],
+            [
+                ['caster_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Caster::className(),
+                'targetAttribute' => ['caster_id' => 'id']
+            ],
+            [
+                ['video_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Video::className(),
+                'targetAttribute' => ['video_id' => 'id']
+            ],
         ];
     }
 

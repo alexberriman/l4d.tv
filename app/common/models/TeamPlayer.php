@@ -33,8 +33,20 @@ class TeamPlayer extends \yii\db\ActiveRecord
             [['team_id', 'player_id'], 'required'],
             [['team_id', 'status'], 'integer'],
             [['player_id'], 'string', 'max' => 20],
-            [['player_id'], 'exist', 'skipOnError' => true, 'targetClass' => Player::className(), 'targetAttribute' => ['player_id' => 'id']],
-            [['team_id'], 'exist', 'skipOnError' => true, 'targetClass' => Team::className(), 'targetAttribute' => ['team_id' => 'id']],
+            [
+                ['player_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Player::className(),
+                'targetAttribute' => ['player_id' => 'id']
+            ],
+            [
+                ['team_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Team::className(),
+                'targetAttribute' => ['team_id' => 'id']
+            ],
         ];
     }
 
