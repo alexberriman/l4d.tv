@@ -33,6 +33,7 @@ app:
     hostname:
         frontend: www.l4d.tv.vagrant
         backend: admin.l4d.tv.vagrant
+        phpmyadmin: phpmyadmin.l4d.tv.vagrant
     db:
         test:
             database: db_test

@@ -1,0 +1,34 @@
+---
+
+- name: Install dbconfig-common
+  apt: pkg=dbconfig-common state=latest install_recommends=no
+
+- name: debconf for pma
+  debconf: name=phpmyadmin question='phpmyadmin/dbconfig-install' value='true' vtype='boolean'
+
+- name: debconf for pma
+  debconf: name=phpmyadmin question='phpmyadmin/app-password-confirm' value='{{ mysql.root_password }}' vtype='password'
+
+- name: debconf for pma
+  debconf: name=phpmyadmin question='phpmyadmin/mysql/admin-pass' value='{{ mysql.root_password }}' vtype='password'
+
+- name: debconf for pma
+  debconf: name=phpmyadmin question='phpmyadmin/mysql/app-pass' value='{{ mysql.root_password }}' vtype='password'
+
+- name: debconf for pma
+  debconf: name=phpmyadmin question='phpmyadmin/reconfigure-webserver' value='' vtype='multiselect'
+
+- name: install pma
+  apt: pkg=phpmyadmin state=present
+
+- name: phpmyadmin | Create vhost
+  sudo: yes
+  template: src="vhost_phpmyadmin.tpl" dest={{ nginx.vhostpath }}/phpmyadmin
+
+- name: phpmyadmin | Create symlink
+  sudo: yes
+  file: src={{ nginx.vhostpath }}/phpmyadmin dest={{ nginx.vhostenabledpath }}/phpmyadmin state=link
+
+- name: phpmyadmin | Restart nginx
+  sudo: yes
+  service: name=nginx state=restarted
