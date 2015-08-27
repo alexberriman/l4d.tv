@@ -11,6 +11,16 @@ return [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'fishvision\migrate\controllers\MigrateController',
+            'autoDiscover' => true,
+            'migrationPaths' => [
+                '@console/migrations',
+                '@common/migrations',
+            ],
+        ],
+    ],
     'components' => [
         'log' => [
             'targets' => [
