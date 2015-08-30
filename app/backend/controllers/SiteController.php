@@ -64,6 +64,10 @@ class SiteController extends Controller
             return $this->goHome();
         }
 
+        // Use the log in template
+        $this->layout = 'login';
+
+        // Instantiate the log in form
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();

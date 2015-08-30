@@ -29,6 +29,15 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+                'basePath' => '@app/themes/remark',
+                'baseUrl' => '@web/themes/remark',
+                'pathMap' => [
+                    '@app/views' => '@app/themes/remark',
+                ],
+            ],
+        ],
     ],
     'params' => $params,
 ];
