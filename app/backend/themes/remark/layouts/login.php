@@ -4,10 +4,10 @@
 /* @var $content string */
 
 use backend\assets\AppAsset;
-use yii\helpers\Html;
-use common\widgets\Alert;
-use backend\themes\remark\assets\ThemeAsset;
 use backend\themes\remark\assets\LoginAsset;
+use backend\themes\remark\assets\ThemeAsset;
+use common\widgets\Alert;
+use yii\helpers\Html;
 
 AppAsset::register($this);
 ThemeAsset::register($this);
@@ -44,10 +44,13 @@ LoginAsset::register($this);
                     <h2 class="brand-text font-size-40">
                         <?= Html::encode(Yii::$app->params['siteName']) ?>
                     </h2>
+
                     <div class="clearfix"></div>
                 </div>
-                <p class="font-size-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p class="font-size-20">
+                    <?= Yii::t('app',
+                        'Log in to actively take part in tournaments, view detailed statistics and analytics and view your tournament history.'); ?>
+                </p>
             </div>
 
             <div class="page-login-main">
