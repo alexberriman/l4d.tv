@@ -39,11 +39,12 @@ LoginAsset::register($this);
         <div class="page-content">
             <div class="page-brand-info">
                 <div class="brand">
-                    <img class="brand-img" src="../../assets/images/logo@2x.png" alt="...">
+                    <div class="login-logo"></div>
 
                     <h2 class="brand-text font-size-40">
                         <?= Html::encode(Yii::$app->params['siteName']) ?>
                     </h2>
+                    <div class="clearfix"></div>
                 </div>
                 <p class="font-size-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua.</p>
